@@ -386,21 +386,21 @@ const Game = () => {
                   type="date"
                   id="gameStartDate"
                   placeholder="Game Start Date"
-                  // onChange={(e) => {
-                  //   setGameStartDate(e)
-                  // }}
-                  // maxDate={new Date()}
                   onChange={(e) => {
-                    const selectedDate = new Date(e.target.value);
-                    // Perform your custom validation here, for example:
-                    if (selectedDate < new Date()) {
-                      // If the selected date is before today, do something (e.g., show an error message).
-                      console.error('Selected date must be today or in the future');
-                    } else {
-                      // Set the selected date if it passes validation.
-                      setGameStartDate(e.target.value);
-                    }
+                    setGameStartDate(e)
                   }}
+                  // maxDate={new Date()}
+                  // onChange={(e) => {
+                  //   const selectedDate = new Date(e.target.value);
+                  //   // Perform your custom validation here, for example:
+                  //   if (selectedDate < new Date()) {
+                  //     // If the selected date is before today, do something (e.g., show an error message).
+                  //     console.error('Selected date must be today or in the future');
+                  //   } else {
+                  //     // Set the selected date if it passes validation.
+                  //     setGameStartDate(e.target.value);
+                  //   }
+                  // }}
                   // Set max date to the current date (optional, if you want to restrict selection to the present or future).
                   min={new Date().toISOString().split('T')[0]}
                 />
