@@ -35,6 +35,7 @@ const Agents = () => {
   const [itemValue, setItemValue] = useState('')
   const [editModalVisible, setEditModalVisible] = useState(false)
   const [agentsData, setAgentsData] = useState([])
+  const [filteredAgentsData, setFilteredAgentsData] = useState([])
   const [visible, setVisible] = useState(false)
   const [id, setId] = useState('')
   const [name, setName] = useState('')
@@ -58,9 +59,31 @@ const Agents = () => {
     setGender('')
     setStatus('')
   }
+  
   const agents_list = async () => {
-    let result = await getApiCall(base.agentsList)
-    setAgentsData(result)
+    try {
+      let result = await getApiCall(base.agentsList) 
+      if(result.length > 0) {
+        setAgentsData(result)
+        setFilteredAgentsData(result) // Initialize filtered data with the full list
+      }
+    } catch (error){
+      console.error('Error fetching agents list:', error);
+    }
+  }
+
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value.toLowerCase()
+    setSearch(searchTerm)
+
+    // Filter the agents based on the search term
+    const filteredData = agentsData.filter((agent) =>
+      agent.agents_name.toLowerCase().includes(searchTerm) ||
+      agent.agents_email.toLowerCase().includes(searchTerm) ||
+      agent.agents_phone.toLowerCase().includes(searchTerm)
+    )
+    
+    setFilteredAgentsData(filteredData)
   }
 
   const save_agent = async () => {
@@ -84,8 +107,7 @@ const Agents = () => {
         password: password,
         gender: gender,
         status: status,
-      }
-      // console.log("saveAgentApiCallreq", req);
+      } 
       let result = await postApiCall(base.saveAgent, req)
       if (result.code == 200) {
         setVisible(false)
@@ -161,48 +183,37 @@ const Agents = () => {
       newPassword += charset[randomIndex]
     }
     setPassword(newPassword)
-    toast.error(newPassword)
+    toast.success(newPassword)
     console.log('newPassworddd', newPassword)
-  }
-
-  // const _filter = (item, index) => {
-  //   console.log("itemfilter", item);
-  //   if (item.agents_name.toString().toUpperCase().search(search.toString().toUpperCase()) !== -1 ||
-  //     item.agents_email.toString().toUpperCase().search(search.toString().toUpperCase()) !== -1 ||
-  //     item.agents_phone.toString().toUpperCase().search(search.toString().toUpperCase()) !== -1 ||
-  //     item.agents_gender.toString().toUpperCase().search(search.toString().toUpperCase()) !== -1 ||
-  //     item.agents_address.toString().toUpperCase().search(search.toString().toUpperCase()) !== -1
-  //   ) {
-  //     return item;
-  //   }
-  // }
+  } 
 
   return (
     <CRow>
       <ToastContainer />
       <CCol xs={12} className="mb-4">
-        {/* <div className='d-flex justify-content-between'> */}
-        <CButton
-          color="primary"
-          onClick={() => {
-            setVisible(true)
-          }}
-          onClose={() => setVisible(false)}
-        >
-          Add
-        </CButton>
-        {/* <div class="w-25">
+        <div className='d-flex justify-content-between'>
+          <CButton
+            color="primary"
+            onClick={() => {
+              setVisible(true)
+            }}
+            onClose={() => setVisible(false)}
+          >
+            Add
+          </CButton>
+          <div class="w-25">
             <CFormInput
               type="text"
               id="search"
               placeholder="Search"
-              onChange={(e) => { setSearch(e) }}
+              value={search}
+              onChange={handleSearch} // Updated to use the search handler
             />
-          </div>
-        </div> */}
+          </div> 
+        </div> 
         <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
           <CModalHeader>
-            <CModalTitle>Add</CModalTitle>
+            <CModalTitle>Add Agents</CModalTitle>
           </CModalHeader>
           <CModalBody>
             <CForm>
@@ -312,10 +323,8 @@ const Agents = () => {
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {agentsData.map((item, index) => {
-                  console.log('agentlistitem', item)
-                  // if (_filter(item, search)) {
-                  return (
+                {filteredAgentsData.length > 0 ?
+                  (filteredAgentsData.map((item, index) => (
                     <CTableRow key={index}>
                       <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
                       <CTableDataCell>{item.agents_name}</CTableDataCell>
@@ -458,9 +467,14 @@ const Agents = () => {
                         </Link>
                       </CTableDataCell>
                     </CTableRow>
-                  )
-                  // }
-                })}
+                  )) 
+                ) : (
+                    <CTableRow>
+                      <CTableDataCell colSpan="8" className="text-center">
+                        No data found
+                      </CTableDataCell>
+                    </CTableRow>
+              )}
               </CTableBody>
             </CTable>
           </CCardBody>
