@@ -1,5 +1,5 @@
-// const mainUrl = process.env.REACT_APP_API_URL;
-const mainUrl = `http://localhost:8000`;
+const mainUrl = process.env.REACT_APP_API_URL;
+// const mainUrl = `http://localhost:8000`;
 
 const base = {
   adminLogin: `${mainUrl}/adminLogin`,
