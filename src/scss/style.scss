@@ -52,7 +52,7 @@ $enable-rtl: true;
   margin: 10px 0;  
 } 
 .ticketNumberText{ 
-  width: 47px;
+  width: 100%;
   height: 45px;
   display: flex;
   justify-content: center;
@@ -103,21 +103,15 @@ $enable-rtl: true;
   // margin-left: 15px;
   padding: 5px 10px;
 }
-
-@media (max-width: 1024px) {
-  .ticketNumberText{
-    width: 67px;
-    height: 45px;
-  }
-}
+ 
 @media (max-width: 1024px) {
   .ticketNumberText{
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
     font-weight: bold;
-    // width: 35px;
-    // height: 30px;
+    width: 100%;
+    height: 40px;
     font-size: 12px;
   }
 }
@@ -144,25 +138,25 @@ $enable-rtl: true;
   }
   @media (max-width: 768px) {
     .ticketNumberText{
-      width: 33px;
+      width: 100%;
       height: 35px;
     }
   }
   @media (max-width: 425px) {
     .ticketNumberText{
-      width: 38px;
+      width: 100%;
       height: 38px;
     }
   }
   @media (max-width: 375px) {
     .ticketNumberText{
-      width: 32px;
+      width: 100%;
       height: 30px;
     }
   }
   @media (max-width: 320px) {
     .ticketNumberText{
-      width: 26px;
+      width: 100%;
       height: 25px;
     }
   }

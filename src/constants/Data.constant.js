@@ -1,4 +1,5 @@
-const mainUrl = process.env.REACT_APP_API_URL;
+// const mainUrl = process.env.REACT_APP_API_URL;
+const mainUrl = `http://localhost:8000`;
 
 const base = {
   adminLogin: `${mainUrl}/adminLogin`,
@@ -24,6 +25,9 @@ const base = {
   deleteAnnouncement: `${mainUrl}/deleteAnnouncement`,
   disclaimerList: `${mainUrl}/disclaimerList`,
   editDisclaimer: `${mainUrl}/editDisclaimer`,
+  aboutList: `${mainUrl}/aboutList`,
+  editAbout: `${mainUrl}/editAbout`,
+  feedbackList: `${mainUrl}/feedbackList`,
   agentDetails: `${mainUrl}/agentDetails`,
   agentPaidAmount: `${mainUrl}/agentPaidAmount`,
   agentCreditDebitTransacationList: `${mainUrl}/agentCreditDebitTransacationList`,

@@ -8,6 +8,8 @@ const Ticket = React.lazy(() => import('./views/tickets/Ticket'))
 const Game = React.lazy(() => import('./views/game/Game'))
 const Announcement = React.lazy(() => import('./views/announcement/Announcement'))
 const Disclaimer = React.lazy(() => import('./views/disclaimer/Disclaimer'))
+const About = React.lazy(() => import('./views/about/About'))
+const Feedback = React.lazy(() => import('./views/feedback/Feedback'))
 const TicketView = React.lazy(() => import('./views/game/TicketView'))
 const Winner_awards = React.lazy(() => import('./views/game/Winner_awards'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -70,9 +72,10 @@ const routes = [
   { path: '/game', name: 'Game', element: Game },
   { path: '/announcement', name: 'Announcement', element: Announcement },
   { path: '/disclaimer', name: 'Disclaimer', element: Disclaimer },
+  { path: '/about', name: 'About', element: About },  
+  { path: '/feedback', name: 'Feedback', element: Feedback },    
   { path: '/ticketView/:id', name: 'TicketView', element: TicketView },
   { path: '/winner_awards/:id', name: 'Winner_awards', element: Winner_awards },
-
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },

@@ -112,14 +112,14 @@ const Dashboard = (props) => {
         },
         country: {
           address: item.agents_address
+        }, 
+        // payment: { name: 'Mastercard', icon: cibCcMastercard },
+        payment: { 
+          name: item.wallet 
         },
-        usage: {
-          value: item.agents_ticket_limit,
-          // period: 'Jun 11, 2021 - Jul 10, 20211',
-          color: 'success',
+        activity: {
+          status: item.agents_active_status
         },
-        payment: { name: 'Mastercard', icon: cibCcMastercard },
-        activity: '10 sec ago',
       })
     });
     console.log("FinalArrFinalArr", FinalArr);
@@ -449,11 +449,9 @@ const Dashboard = (props) => {
                   <CTableRow>
                     <CTableHeaderCell className="text-center">Sl./No.</CTableHeaderCell>
                     <CTableHeaderCell>Agent Name</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Address</CTableHeaderCell>
-                    <CTableHeaderCell>Ticket Limit</CTableHeaderCell>
-                    <CTableHeaderCell>Total Ticket</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Address</CTableHeaderCell>  
                     <CTableHeaderCell className="text-center">Amount</CTableHeaderCell>
-                    {/* <CTableHeaderCell>Activity</CTableHeaderCell> */}
+                    <CTableHeaderCell>Agent Status</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -470,28 +468,13 @@ const Dashboard = (props) => {
                       </CTableDataCell>
                       <CTableDataCell className="text-center">
                         <div>{item.country.address}</div>
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="clearfix">
-                          <div className="float-start">
-                            <strong>{item.usage.value}</strong>
-                          </div>
-                          <div className="float-end">
-                            <small className="text-medium-emphasis">{item.usage.period}</small>
-                          </div>
-                        </div>
-                        {/* <CProgress thin color={item.usage.color} value={item.usage.value} /> */}
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>{item.country.address}</div>
-                      </CTableDataCell>
+                      </CTableDataCell>  
                       <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
+                        <div>{item.payment.name == null ? "0" : item.payment.name}</div> 
                       </CTableDataCell>
-                      {/* <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.activity}</strong>
-                      </CTableDataCell> */}
+                      <CTableDataCell> 
+                        <strong>{item.activity.status}</strong>
+                      </CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>
@@ -501,7 +484,7 @@ const Dashboard = (props) => {
         </CCol>
       </CRow>
 
-      <WidgetsBrand withCharts />
+      {/* <WidgetsBrand withCharts /> */}
     </>
     //     )}
     //   </>

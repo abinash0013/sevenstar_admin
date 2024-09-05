@@ -35,12 +35,19 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const TicketView = (props) => {
+
   const [ticket, setTicket] = useState([])
+  const [agentsData, setAgentsData] = useState([])
+  const [visible, setVisible] = useState(false); 
+
   useEffect(() => {
+    agents_list()
     ticketCardView()
   }, [props])
+  
   const { id } = useParams()
   console.log('iidd', id)
+  
   const ticketCardView = async () => {
     let req = {
       gameId: id,
@@ -56,11 +63,23 @@ const TicketView = (props) => {
       console.log('errorjson', error)
     }
   }
+  
+  const agents_list = async () => {
+    try {
+      let result = await getApiCall(base.agentsList) 
+      console.log("resultLOG", result);      
+      if(result.length > 0) {
+        setAgentsData(result) 
+      }
+    } catch (error){
+      console.error('Error fetching agents list:', error);
+    }
+  }
 
   const _render_ticket_card_view = (data) => {
     {
       return data?.map((item, index) => {
-        // console.log('card_view_item', item)
+        console.log('card_view_item', item)
         return (
           <CCol sm={6} key={index} className='ticketViewOuterContainer'>
             <CCard>
@@ -75,7 +94,7 @@ const TicketView = (props) => {
                 </div>
                 <div className='ticketCardInfo'>
                   <div className='ticketCardInfoDetails'>
-                    Agent Name: {item.agentId != '' ? item.agentId : 'Un Sold'}
+                    Agent Id: {item.agentId != '' ? item.agentId : 'Un Sold'}
                   </div>
                   <div className='ticketCardInfoDetails'>
                     Ticket Number: {item.ticketUniquieId != '' ? item.ticketUniquieId : 'N/A'}
@@ -106,8 +125,45 @@ const TicketView = (props) => {
   }
 
   return (
-    <CRow>{_render_ticket_card_view(ticket || [])}</CRow>
-    // <div style={{ flex: 1, background: 'red' }}></div>
+    <div>
+      <CButton color="primary" onClick={() => setVisible(!visible)}>
+        Show Agents
+      </CButton>
+      <CModal visible={visible} onClose={() => setVisible(false)}>
+        <CModalHeader> Agent Information </CModalHeader>
+        <CModalBody>
+        <CTable bordered>
+            <CTableHead>
+              <CTableRow>
+                <CTableHeaderCell scope="col">#</CTableHeaderCell>
+                <CTableHeaderCell scope="col">Agent Id</CTableHeaderCell>
+                <CTableHeaderCell scope="col">Agent Name</CTableHeaderCell> 
+                <CTableHeaderCell scope="col">Agent Phone</CTableHeaderCell>
+              </CTableRow>
+            </CTableHead>
+            <CTableBody>
+              {agentsData.length > 0 ? (
+                agentsData.map((item, index) => (
+                  <CTableRow key={item.agents_id}>
+                    <CTableDataCell>{index + 1}</CTableDataCell>
+                    <CTableDataCell>{item.agents_id}</CTableDataCell>
+                    <CTableDataCell>{item.agents_name}</CTableDataCell> 
+                    <CTableDataCell>{item.agents_phone}</CTableDataCell>
+                  </CTableRow>
+                ))
+              ) : (
+                <CTableRow>
+                  <CTableDataCell colSpan="4">No Agents Found</CTableDataCell>
+                </CTableRow>
+              )}
+            </CTableBody>
+          </CTable>
+        </CModalBody>
+      </CModal>
+    <CRow> 
+      {_render_ticket_card_view(ticket || [])}
+    </CRow> 
+    </div>
   )
 }
 // const Styles = {

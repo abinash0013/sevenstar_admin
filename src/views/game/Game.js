@@ -703,13 +703,13 @@ const Game = () => {
                                         defaultValue={gameAmount}
                                         disabled
                                       />
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Quick Fire"
                                         id="gameQuickFire"
                                         defaultChecked={gameQuickFire}
                                         onChange={() => setGameQuickFire(!gameQuickFire)}
                                         disabled
-                                      />
+                                      /> */}
                                       {/* <CFormSwitch
                                         label="Game Star"
                                         id="gameStar"
@@ -717,27 +717,27 @@ const Game = () => {
                                         onChange={() => setGameStar(!gameStar)}
                                         disabled
                                       /> */}
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Top Line"
                                         id="gameTopLine"
                                         defaultChecked={gameTopLine}
                                         onChange={() => setGameTopLine(!gameTopLine)}
                                         disabled
-                                      />
-                                      <CFormSwitch
+                                      /> */}
+                                      {/* <CFormSwitch
                                         label="Game Middle Line"
                                         id="gameMiddleLine"
                                         defaultChecked={gameMiddleLine}
                                         onChange={() => setGameMiddleLine(!gameMiddleLine)}
                                         disabled
-                                      />
-                                      <CFormSwitch
+                                      /> */}
+                                      {/* <CFormSwitch
                                         label="Game Bottom Line"
                                         id="gameBottomLine"
                                         defaultChecked={gameBottomLine}
                                         onChange={() => setGameBottomLine(!gameBottomLine)}
                                         disabled
-                                      />
+                                      /> */}
                                       {/* <CFormSwitch
                                         label="Game Corner"
                                         id="gameCorner"
@@ -752,13 +752,13 @@ const Game = () => {
                                         onChange={() => setGameHalfSheet(!gameHalfSheet)}
                                         disabled
                                       /> */}
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Housefull"
                                         id="gameHousefull"
                                         defaultChecked={gameHousefull}
                                         onChange={() => setGameHousefull(!gameHousefull)}
                                         disabled
-                                      />
+                                      /> */}
                                       <CFormLabel htmlFor="gameStatus">Game Status</CFormLabel>
                                       <CFormSelect
                                         defaultValue={gameStatus}
@@ -828,36 +828,36 @@ const Game = () => {
                                         }}
                                         defaultValue={gameAmount}
                                       />
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Quick Fire"
                                         id="gameQuickFire"
                                         defaultChecked={gameQuickFire}
                                         onChange={() => setGameQuickFire(!gameQuickFire)}
-                                      />
+                                      /> */}
                                       {/* <CFormSwitch
                                         label="Game Star"
                                         id="gameStar"
                                         defaultChecked={gameStar}
                                         onChange={() => setGameStar(!gameStar)}
                                       /> */}
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Top Line"
                                         id="gameTopLine"
                                         defaultChecked={gameTopLine}
                                         onChange={() => setGameTopLine(!gameTopLine)}
-                                      />
-                                      <CFormSwitch
+                                      /> */}
+                                      {/* <CFormSwitch
                                         label="Game Middle Line"
                                         id="gameMiddleLine"
                                         defaultChecked={gameMiddleLine}
                                         onChange={() => setGameMiddleLine(!gameMiddleLine)}
-                                      />
-                                      <CFormSwitch
+                                      /> */}
+                                      {/* <CFormSwitch
                                         label="Game Bottom Line"
                                         id="gameBottomLine"
                                         defaultChecked={gameBottomLine}
                                         onChange={() => setGameBottomLine(!gameBottomLine)}
-                                      />
+                                      /> */}
                                       {/* <CFormSwitch
                                         label="Game Corner"
                                         id="gameCorner"
@@ -870,12 +870,12 @@ const Game = () => {
                                         defaultChecked={gameHalfSheet}
                                         onChange={() => setGameHalfSheet(!gameHalfSheet)}
                                       /> */}
-                                      <CFormSwitch
+                                      {/* <CFormSwitch
                                         label="Game Housefull"
                                         id="gameHousefull"
                                         defaultChecked={gameHousefull}
                                         onChange={() => setGameHousefull(!gameHousefull)}
-                                      />
+                                      /> */}
                                       <CFormLabel htmlFor="gameStatus">Game Status</CFormLabel>
                                       <CFormSelect
                                         defaultValue={gameStatus}
@@ -903,8 +903,7 @@ const Game = () => {
                                 <CButton color="secondary" onClick={() => setEditModalVisible(false)}>
                                   Cancel
                                 </CButton>
-                                {/* <CButton color="primary" onClick={() => edit_game()}>Edit</CButton> */}
-                                {editOption == false ? (
+                                {/* {editOption == false ? (
                                   <>
                                     <CButton color="primary" onClick={() => setEditOption(true)}>
                                       Edit
@@ -942,7 +941,7 @@ const Game = () => {
                                   <CButton color="primary" onClick={() => edit_game()}>
                                     Update
                                   </CButton>
-                                )}
+                                )} */}
                               </CModalFooter>
                             </CModal>
                           </CTableDataCell>

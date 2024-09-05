@@ -37,15 +37,15 @@ const Login = () => {
         username: userName.target.value,
         password: password.target.value,
       }
-      // console.log("first", req)
+      console.log("first", req)
       let result = await postApiCall(base.adminLogin, req)
-      // console.log("logoflogin", result);
+      console.log("logoflogin", result);
+      console.log("logofloginadmin", result.data[0].admin_id);      
       if (result.status == true) {
-        toast.error('Login successfully')
-        let test = await localStorage.setItem('adminLoginId', result.data[0].admin_id)
-        // let test = await localStorage.setItem("loginId", "1");
-        // console.log("testeee", test);
-        navigate('/dashboard')
+        toast.success('Login successfully')
+        localStorage.setItem('adminLoginId', result.data[0].admin_id); // No need for await
+        console.log("adminLoginId set:", result.data[0].admin_id); // Log the value you set
+        navigate('/dashboard');
       } else {
         toast.error('Login failed')
       }
