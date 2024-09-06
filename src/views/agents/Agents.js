@@ -201,7 +201,7 @@ const Agents = () => {
           >
             Add
           </CButton>
-          <div class="w-25">
+          <div className="w-25">
             <CFormInput
               type="text"
               id="search"
