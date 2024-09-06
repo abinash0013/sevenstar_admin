@@ -31,18 +31,33 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const Feedback = () => { 
   const [feedbackData, setFeedbackData] = useState([]) 
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   useEffect(() => {
     feedback_list()
   }, [])
 
   const feedback_list = async () => {
-    let result = await getApiCall(base.feedbackList)
-    console.log('resultresultresult', result)
-    if(result.length > 0){
-      setFeedbackData(result)
+    let res = {
+      status: "Active"
+    } 
+    let result = await postApiCall(base.feedbackList, res) 
+    if(result){ 
+      setFeedbackData(result.data)
     }
   } 
+
+  const delete_feedback = async (value) => {     
+    let req = {
+      id: value.feedback_id ,
+      status: 'DeActive',
+    } 
+    let result = await putApiCall(base.deleteFeedback, req) 
+    if (result.code == 200) {
+      feedback_list()
+      toast.error('Deleted Successfully..!')
+    }
+  }
 
   return (
     <CRow>
@@ -59,16 +74,28 @@ const Feedback = () => {
                   <CTableHeaderCell scope="col">Name</CTableHeaderCell> 
                   <CTableHeaderCell scope="col">Email</CTableHeaderCell> 
                   <CTableHeaderCell scope="col">Description</CTableHeaderCell> 
+                  <CTableHeaderCell scope="col">Action</CTableHeaderCell> 
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {feedbackData.map((item, index) => { 
+                {feedbackData.map((item, index) => {                    
                   return (
                     <CTableRow key={index}>
                       <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
                       <CTableDataCell>{item.username}</CTableDataCell>
                       <CTableDataCell>{item.email}</CTableDataCell>
-                      <CTableDataCell>{item.description}</CTableDataCell> 
+                      <CTableDataCell>{item.description}</CTableDataCell>  
+                      <CTableDataCell>
+                        <CButton
+                          color="danger"
+                          className="me-2"
+                          onClick={() => {
+                            delete_feedback(item)
+                          }}
+                        >
+                          Delete
+                        </CButton> 
+                      </CTableDataCell>
                     </CTableRow>
                   )
                 })}

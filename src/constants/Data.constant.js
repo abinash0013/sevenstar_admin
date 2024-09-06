@@ -28,6 +28,7 @@ const base = {
   aboutList: `${mainUrl}/aboutList`,
   editAbout: `${mainUrl}/editAbout`,
   feedbackList: `${mainUrl}/feedbackList`,
+  deleteFeedback: `${mainUrl}/deleteFeedback`,
   agentDetails: `${mainUrl}/agentDetails`,
   agentPaidAmount: `${mainUrl}/agentPaidAmount`,
   agentCreditDebitTransacationList: `${mainUrl}/agentCreditDebitTransacationList`,
