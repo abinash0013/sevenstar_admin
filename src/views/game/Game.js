@@ -229,43 +229,26 @@ const Game = () => {
         // <Toast />
       }
     }
-  }
-
-  // const indexOfLastRecord = currentPage * recordsPerPage;
-  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  // // Records to be displayed on the current page
-  // const currentRecords = data.slice(indexOfFirstRecord,indexOfLastRecord);
-  // const nPages = Math.ceil(data.length / recordsPerPage)
-
-  const handlePrevFunction = () => {
-    setPrevPage(Number(prevPage) + 10)
-    game_list(Number(prevPage) - 10, nextPage)
-  }
-
-  const handleNextFunction = () => {
-    setNextPage(Number(nextPage) + 10)
-    game_list(prevPage, Number(nextPage) + 10)
-  }
-
+  } 
   const successToast = () => {
     toast.success('Success !', {
       position: toast.POSITION.TOP_RIGHT,
     })
   }
 
-  const delete_game = async (id) => {
-    // console.log('delete_game_id_log', id)
-    let req = {
-      id: id,
-      status: '1',
-    }
-    // console.log('reqqqq', req)
-    let result = await putApiCall(base.deleteGame, req)
-    // console.log('reqqqqresult', result)
-    if (result.length > 0) {
-      toast.error('Deleted Successfully...')
-    }
-  }
+  // const delete_game = async (id) => {
+  //   // console.log('delete_game_id_log', id)
+  //   let req = {
+  //     id: id,
+  //     status: '1',
+  //   }
+  //   // console.log('reqqqq', req)
+  //   let result = await putApiCall(base.deleteGame, req)
+  //   // console.log('reqqqqresult', result)
+  //   if (result.length > 0) {
+  //     toast.error('Deleted Successfully...')
+  //   }
+  // }
 
   const get_edit_value = async (item) => {
     // console.log('get_edit_valueeee', item)
@@ -287,47 +270,47 @@ const Game = () => {
     setGameStatus(item.game_status)
   }
 
-  const edit_game = async () => {
-    if (gameName == '') {
-      toast.error('Game Name is Mandatory')
-    } else if (gameStartDate == '') {
-      toast.error('Game Start Date is Mandatory')
-    } else if (gameStartTime == '') {
-      toast.error('Game Start Time is Mandatory')
-    } else if (gameMaximumTicketSell == '') {
-      toast.error('Game Maximum Ticket Sell is Mandatory')
-    } else if (gameAmount == '') {
-      toast.error('Game Amount is Mandatory')
-    } else if (gameStatus == '') {
-      toast.error('Game Amount Per Ticket To Agent is Mandatory')
-    } else {
-      let req = {
-        id: id,
-        gameName: gameName,
-        gameStartDate: gameStartDate,
-        gameStartTime: gameStartTime,
-        gameMaximumTicketSell: gameMaximumTicketSell,
-        gameAmount: gameAmount,
-        gameQuickFire: gameQuickFire,
-        gameStar: gameStar,
-        gameTopLine: gameTopLine,
-        gameMiddleLine: gameMiddleLine,
-        gameBottomLine: gameBottomLine,
-        gameCorner: gameCorner,
-        gameHalfSheet: gameHalfSheet,
-        gameHousefull: gameHousefull,
-        gameStatus: gameStatus,
-      }
-      // console.log('reqofedituser', req)
-      let result = await putApiCall(base.editGame, req)
-      // console.log('resultofedituser', result)
-      if (result.code == 200) {
-        successToast()
-        setEditModalVisible(false)
-        setEditOption(false)
-      }
-    }
-  }
+  // const edit_game = async () => {
+  //   if (gameName == '') {
+  //     toast.error('Game Name is Mandatory')
+  //   } else if (gameStartDate == '') {
+  //     toast.error('Game Start Date is Mandatory')
+  //   } else if (gameStartTime == '') {
+  //     toast.error('Game Start Time is Mandatory')
+  //   } else if (gameMaximumTicketSell == '') {
+  //     toast.error('Game Maximum Ticket Sell is Mandatory')
+  //   } else if (gameAmount == '') {
+  //     toast.error('Game Amount is Mandatory')
+  //   } else if (gameStatus == '') {
+  //     toast.error('Game Amount Per Ticket To Agent is Mandatory')
+  //   } else {
+  //     let req = {
+  //       id: id,
+  //       gameName: gameName,
+  //       gameStartDate: gameStartDate,
+  //       gameStartTime: gameStartTime,
+  //       gameMaximumTicketSell: gameMaximumTicketSell,
+  //       gameAmount: gameAmount,
+  //       gameQuickFire: gameQuickFire,
+  //       gameStar: gameStar,
+  //       gameTopLine: gameTopLine,
+  //       gameMiddleLine: gameMiddleLine,
+  //       gameBottomLine: gameBottomLine,
+  //       gameCorner: gameCorner,
+  //       gameHalfSheet: gameHalfSheet,
+  //       gameHousefull: gameHousefull,
+  //       gameStatus: gameStatus,
+  //     }
+  //     // console.log('reqofedituser', req)
+  //     let result = await putApiCall(base.editGame, req)
+  //     // console.log('resultofedituser', result)
+  //     if (result.code == 200) {
+  //       successToast()
+  //       setEditModalVisible(false)
+  //       setEditOption(false)
+  //     }
+  //   }
+  // }
 
   return (
     <CRow>
