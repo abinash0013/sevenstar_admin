@@ -78,7 +78,7 @@ const Feedback = () => {
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {feedbackData.map((item, index) => {                    
+                {feedbackData?.map((item, index) => {                    
                   return (
                     <CTableRow key={index}>
                       <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
