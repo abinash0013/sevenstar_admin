@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const Profile = () => {
   const { id } = useParams()
+  console.log("idididididid", id);  
   const [agentsDetails, setAgentsDetails] = useState([])
   const [agentsTransaction, setAgentsTransaction] = useState([])
   const [transactionAmount, setTransactionAmount] = useState('')
@@ -32,11 +33,13 @@ const Profile = () => {
   const agents_details = async () => {
     try {
       let body = {
-        agent_id: id,
+        agentId: id, 
       }
       let result = await postApiCall(base.agentDetails, body)
-      setTransactionAmount('')
-      setAgentsDetails(result.data[0])
+      if(result){
+        setTransactionAmount('')
+        setAgentsDetails(result.data[0])
+      }
     } catch (e) {}
   }
 
@@ -59,9 +62,9 @@ const Profile = () => {
     if (Number(value.amount) > Number(agentsDetails.wallet)) {
       toast.error('Insufficient balance')
     } else {
-      const agentId = localStorage.getItem('agentLoginId')
+      // const agentId = localStorage.getItem('agentLoginId')
       let req = {
-        agentId: agentId,
+        agentId: value.agents_id,
         requestedAmount: value.amount,
       }
       let result = await postApiCall(base.deductMoneyFromAgentWallet, req)
